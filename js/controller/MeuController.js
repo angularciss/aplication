@@ -1,5 +1,6 @@
 myApp.controller('MeuController', function($scope){
 	$scope.pessoa = {};
+
 	$scope.dados = [{
 		nome : 'Cleber Carlos',
 		telefone : '(45) 8794-5445',
@@ -14,12 +15,24 @@ myApp.controller('MeuController', function($scope){
 		email : 'jessikinhaw__sk8@hotmail.com'
 	}];	
 
+	// Salvar os dados
 	$scope.enviaDados = function(pessoa){
 		
 		var minhaPessoa = angular.copy(pessoa);
 		$scope.dados.push(minhaPessoa);
-		$scope.pessoa = {};
+		//$scope.pessoa = {};
+		delete $scope.pessoa;
+	}
 
+	// Excluir os dados
+	$scope.excluirDados = function(item){
+		$scope.dados.splice(item, 1);
+	}
+
+	// Editar os dados
+	$scope.editarDados = function(item, idx){
+		$scope.pessoa = item;
+		$scope.idx = idx;
 	}
 
 })
